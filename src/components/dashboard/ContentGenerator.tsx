@@ -3,7 +3,7 @@ import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { analyzeImage, generateSocialPost } from '@/lib/openai';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 interface ContentGeneratorProps {
   platform: string;
@@ -20,7 +20,11 @@ export function ContentGenerator({ platform, imageUrl, onGenerated }: ContentGen
     try {
       setLoading(true);
       const analysis = await analyzeImage(imageUrl);
+      if (!analysis) throw new Error('Failed to analyze image');
+      
       const post = await generateSocialPost(platform, analysis);
+      if (!post) throw new Error('Failed to generate post');
+      
       setContent(post);
       onGenerated(post);
     } catch (error) {

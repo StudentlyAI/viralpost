@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Header } from '@/components/layout/Header';
-import { Dashboard } from '@/pages/Dashboard';
-import { Auth } from '@/pages/Auth';
-import { Subscription } from '@/pages/Subscription';
-import { Toaster } from '@/components/ui/toaster';
+import { Header } from './components/layout/Header';
+import { Dashboard } from './pages/Dashboard';
+import { Auth } from './pages/Auth';
+import { Subscription } from './pages/Subscription';
+import { Toaster } from './components/ui/toaster';
 
-function App() {
+export default function App() {
   return (
     <Router>
       <div className="min-h-screen bg-background">
